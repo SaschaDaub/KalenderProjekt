@@ -1,0 +1,16 @@
+{
+  "name": "KalenderProjekt",
+  "version": "1.0.0",
+  "description": "package.json for project Calendar",
+  "main": "js/app.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Colin Postic",
+  "license": "RIB Software SE"
+}

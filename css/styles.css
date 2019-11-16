@@ -1,0 +1,83 @@
+#naviBar {
+    min-height: 100%;
+    height:auto !important;
+    height:100%;
+    width: 17%;
+    float: left;
+    background-color: #3eb7c9;
+    min-width: -moz-min-content;
+}
+
+body {
+    margin: 0;
+}
+
+html, body {
+  height:100%;
+  font-family: Open Sans;
+}
+
+#naviButtons {
+    font-size: 30px;
+    list-style: none;
+    color: #216670;
+}
+
+.trennStrich {
+    color: #216670;
+    width: 86%;
+    min-height: 14%;
+    height:auto !important;
+    height: 14%;
+}
+
+#naviButtons li {
+    text-align: center;
+    margin-right: 17%;
+}
+
+#accountLogo {
+    border-radius: 100%;
+    width: 30%;
+    margin-left: 2em;
+    margin-top: -2em;
+}
+
+#logOutIconDiv {
+    margin-left: 1em;
+    margin-top: 19em;
+    color: white;  
+}
+
+#logOutIcon {
+    font-size: 33px;
+}
+
+#calendarIcon {
+    font-size: 100%;
+    color: #216670;
+    background-color: transparent;
+    border: 0;
+    padding: 4px 5px;
+}
+
+#surveyIcon {
+    font-size: 33px;
+    color: #216670;
+}
+
+#meetingIcon {
+    font-size: 33px;
+    color: #216670;
+}
+
+#topBar {
+    min-height: 20%;
+    height: auto !important;
+    height: 20%;
+    width: 83%;
+    background-color: #38a5b5;
+    margin-left: 17%;
+}
+
+
