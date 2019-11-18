@@ -1,36 +1,46 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Kalender</title>
-        <link href="../css/styles.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/all.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-    </head>
-    <body>
-        <div id="naviBar">
-            <br>
-            <br>
-            <br>
-            <img id="accountLogo" src="../externals/accountLogoDefault.png"/>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <ul id="naviButtons">
-                <li><i id="calendarIcon" class="fas fa-calendar-alt" title="Calendar"></i></li>
-                <li><i id="meetingIcon" class="fas fa-calendar-check" title="Appointments"></i></li>
-                <li><i id="pollIcon" class="fas fa-poll-h"></i></li>
-            </ul>
-            <div id="logOutIconDiv">
-            <i id="logOutIcon" class="fas fa-sign-out-alt">
-                <label>sign-out</label>
-            </i>
-            </div>
-        </div>
-        <div id="topBar">
-            <label></label>
-        </div>
-    </body>
+<head>
+	<meta charset="UTF-8">
+	<title>Kalender</title>
+	<link href="../css/styles.css" rel="stylesheet" type="text/css"/>
+	<link href="../css/all.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans"/>
+	<script src="../js/jquery-1.12.4.js"></script>
+	<script src="../js/jquery-ui1.12.1.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.js"></script>
+	<script src="../js/angularScript.js"></script>
+	<script src="../js/projektScript.js"></script>
+</head>
+<body ng-app="customServerApp">
+<div ng-controller="utilityController">
+	<div id="naviBar">
+		<br>
+		<br>
+		<br>
+		<img id="accountLogo" src="../externals/accountLogoDefault.png"/>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<ul id="naviButtons">
+			<li id="calendarIcon"><i class="fas fa-calendar-alt" title="Calendar"></i></li>
+			<li id="meetingIcon"><i class="fas fa-calendar-check" title="Appointments"></i></li>
+			<li id="pollIcon"><i class="fas fa-poll-h" title="Polls"></i></li>
+		</ul>
+		<div id="logOutIconDiv">
+			<i id="logOutIcon" class="fas fa-sign-out-alt">
+				<label>sign-out</label>
+			</i>
+		</div>
+	</div>
+	<form id="mainContent">
+
+	</form>
+</div>
+<div id="topBar">
+	<label id="currentTabText"></label>
+</div>
+</body>
 </html>

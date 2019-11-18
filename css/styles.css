@@ -6,6 +6,7 @@
     float: left;
     background-color: #3eb7c9;
     min-width: -moz-min-content;
+	padding-bottom: 0.1875em;
 }
 
 body {
@@ -24,18 +25,47 @@ html, body {
     padding: inherit;
 }
 
-.trennStrich {
-    color: #216670;
-    width: 86%;
-    min-height: 14%;
-    height:auto !important;
-    height: 14%;
+#calendarIcon {
+	border-top-style: solid;
+	border-top-width: 0.5px;
+}
+
+#meetingIcon {
+	border-top-style: solid;
+	border-top-width: 0.5px;
+	border-bottom-style: solid;
+	border-bottom-width: 0.5px;
+}
+
+#pollIcon {
+	border-bottom-style: solid;
+	border-bottom-width: 0.5px;
+}
+
+#naviButtons i {
+	font-size: 160%;
+	color: #216670;
+	background-color: transparent;
+	border: none;
+	margin: 1rem;
+}
+
+#naviButtons i:hover {
+	font-size: 160%;
+	color: white;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	margin: 1rem;
 }
 
 #naviButtons li {
-    text-align: center;
-    border-top-style: solid;
-    border-top-width: 0.5px;
+	text-align: center;
+}
+
+#lastIconListElement {
+	border-bottom-style: solid;
+	border-bottom-width: 0.5px;
 }
 
 #accountLogo {
@@ -62,49 +92,6 @@ html, body {
     font-size:50%;
 }
 
-#calendarIcon {
-    font-size: 160%;
-    color: #216670;
-}
-
-#calendarIcon:hover {
-    font-size: 160%;
-    color: white;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-#pollIcon {
-    font-size: 160%;
-    color: #216670;
-}
-
-#pollIcon:hover {
-    font-size: 160%;
-    color: white;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-#meetingIcon {
-    font-size: 160%;
-    color: #216670;
-}
-
-#meetingIcon:hover {
-    font-size: 160%;
-    color: white;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-#naviButtons i {
-    margin: 1rem;
-}
-
 #topBar {
     min-height: 13%;
     height: auto !important;
@@ -112,6 +99,21 @@ html, body {
     width: 95%;
     background-color: #38a5b5;
     margin-left: 5%;
+}
+
+.buttonClicked {
+	border-color: white !important;
+}
+
+.buttonClicked i {
+	color: white !important;
+}
+
+#currentTabText {
+	margin-left: 1rem;
+	color: white;
+	font-family: Open Sans;
+	font-size: xx-large;
 }
 
 

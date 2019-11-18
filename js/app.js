@@ -11,6 +11,30 @@ app.get("/", (req, res) => {
 	res.sendFile("testGui.html", {root: path.join("./html")});
 });
 
+app.get("/js/angularScript.js", (req, res) => {
+	var filename = 'angularScript.js'
+	res.contentType(filename);
+	res.sendFile(filename, {root: path.join("./js")});
+});
+
+app.get("/js/projektScript.js", (req, res) => {
+	var filename = 'projektScript.js'
+	res.contentType(filename);
+	res.sendFile(filename, {root: path.join("./js")});
+});
+
+app.get("/js/jquery-1.12.4.js", (req, res) => {
+	var filename = 'jquery-1.12.4.js'
+	res.contentType(filename);
+	res.sendFile(filename, {root: path.join("./js")});
+});
+
+app.get("/js/jquery-ui1.12.1.js", (req, res) => {
+	var filename = 'jquery-ui1.12.1.js'
+	res.contentType(filename);
+	res.sendFile(filename, {root: path.join("./js")});
+});
+
 app.get("/css/styles.css", (req, res) => {
 	res.sendFile("styles.css", {root: path.join("./css")});
 });
