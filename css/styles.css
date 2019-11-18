@@ -118,4 +118,17 @@ html, body {
 	font-size: xx-large;
 }
 
+#mainContent {
+	height: 87%;
+	height: auto !important;
+	min-height: 87%;
+	width: 95%;
+	margin-left: 5%;
+}
 
+#mainContent div {
+	margin-left: 50%;
+	font-family: Open Sans;
+	font-weight: lighter;
+	color: darkgrey;
+}
