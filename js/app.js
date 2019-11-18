@@ -15,6 +15,10 @@ app.get("/css/styles.css", (req, res) => {
 	res.sendFile("styles.css", {root: path.join("./css")});
 });
 
+app.get("/css/all.css", (req, res) => {
+	res.sendFile("all.css", {root: path.join("./css")});
+});
+
 app.get("/externals/accountLogoDefault.png", (req, res) => {
 	res.sendFile("accountLogoDefault.png", {root: path.join("./externals")});
 });
@@ -22,6 +26,23 @@ app.get("/externals/accountLogoDefault.png", (req, res) => {
 app.get("/externals/trennstrich_kolli3.png", (req, res) => {
 	res.sendFile("trennstrich_kolli3.png", {root: path.join("./externals")});
 });
+
+app.get("/css/all.css", (req, res) => {
+	res.sendFile("all.css", {root: path.join("./css")});
+});
+
+app.get("/webfonts/fa-solid-900.woff2", (req, res) => {
+	res.sendFile("fa-solid-900.woff2", {root: path.join("./webfonts")});
+});
+
+app.get("/webfonts/fa-solid-900.woff", (req, res) => {
+	res.sendFile("fa-solid-900.woff", {root: path.join("./webfonts")});
+});
+
+app.get("/webfonts/fa-solid-900.ttf", (req, res) => {
+	res.sendFile("fa-solid-900.ttf", {root: path.join("./webfonts")});
+});
+
 
 const server = http.createServer(app);
 

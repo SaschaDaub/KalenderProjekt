@@ -2,7 +2,7 @@
     min-height: 100%;
     height:auto !important;
     height:100%;
-    width: 17%;
+    width: 5%;
     float: left;
     background-color: #3eb7c9;
     min-width: -moz-min-content;
@@ -21,6 +21,7 @@ html, body {
     font-size: 30px;
     list-style: none;
     color: #216670;
+    padding: inherit;
 }
 
 .trennStrich {
@@ -33,51 +34,84 @@ html, body {
 
 #naviButtons li {
     text-align: center;
-    margin-right: 17%;
+    border-top-style: solid;
+    border-top-width: 0.5px;
 }
 
 #accountLogo {
     border-radius: 100%;
-    width: 30%;
-    margin-left: 2em;
+    width: 50%;
+    margin-left: 1.5em;
     margin-top: -2em;
 }
 
 #logOutIconDiv {
-    margin-left: 1em;
-    margin-top: 19em;
-    color: white;  
+    margin-left: 1rem;
+    margin-top: 26em;
+    color: #216670;
+    text-align: center;
+    margin-right: 1rem;
 }
 
 #logOutIcon {
-    font-size: 33px;
+     font-size: 33px;
+}
+
+#logOutIcon label {
+    font-family: Open Sans;
+    font-size:50%;
 }
 
 #calendarIcon {
-    font-size: 100%;
+    font-size: 160%;
     color: #216670;
-    background-color: transparent;
-    border: 0;
-    padding: 4px 5px;
 }
 
-#surveyIcon {
-    font-size: 33px;
+#calendarIcon:hover {
+    font-size: 160%;
+    color: white;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#pollIcon {
+    font-size: 160%;
     color: #216670;
+}
+
+#pollIcon:hover {
+    font-size: 160%;
+    color: white;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
 #meetingIcon {
-    font-size: 33px;
+    font-size: 160%;
     color: #216670;
 }
 
+#meetingIcon:hover {
+    font-size: 160%;
+    color: white;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#naviButtons i {
+    margin: 1rem;
+}
+
 #topBar {
-    min-height: 20%;
+    min-height: 13%;
     height: auto !important;
-    height: 20%;
-    width: 83%;
+    height: 13%;
+    width: 95%;
     background-color: #38a5b5;
-    margin-left: 17%;
+    margin-left: 5%;
 }
 
 
