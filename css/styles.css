@@ -6,7 +6,7 @@
     float: left;
     background-color: #3eb7c9;
     min-width: -moz-min-content;
-	padding-bottom: 0.1875em;
+	padding-bottom: 0.53125em;
 }
 
 body {
@@ -73,6 +73,7 @@ html, body {
     width: 50%;
     margin-left: 1.5em;
     margin-top: -2em;
+	color: white;
 }
 
 #logOutIconDiv {
@@ -85,6 +86,7 @@ html, body {
 
 #logOutIcon {
      font-size: 33px;
+	transform: scale(-1);
 }
 
 #logOutIcon label {
