@@ -3,6 +3,7 @@ $(document).ready(function () {
 });
 
 function navigationClickHandler(parent) {
+	$('#mainContent').children().remove();
 	$('#naviButtons li').removeClass('buttonClicked');
 	parent.currentTarget.parentElement.className += 'buttonClicked';
 	$('#currentTabText').text(parent.currentTarget.title);
@@ -22,7 +23,5 @@ function navigationClickHandler(parent) {
 		});
 
 		calendar.render();
-	} else {
-		$('#mainContent').children().remove();
 	}
 }

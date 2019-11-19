@@ -3,10 +3,11 @@
     height:auto !important;
     height:100%;
     width: 5%;
+	width: auto !important;
+	min-width: 5%;
+	max-width: 5%;
     float: left;
     background-color: #3eb7c9;
-    min-width: -moz-min-content;
-	padding-bottom: 0.53125em;
 }
 
 body {
@@ -120,6 +121,8 @@ html, body {
 }
 
 #mainContent {
+	width: auto !important;
+	min-width: 95%;
 	width: 95%;
 	margin-left: 5%;
 	height: auto !important;
