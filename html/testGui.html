@@ -5,15 +5,23 @@
 	<title>Kalender</title>
 	<link href="../css/styles.css" rel="stylesheet" type="text/css"/>
 	<link href="../css/all.css" rel="stylesheet" type="text/css"/>
+	<link href="../node_modules/fullcalendar.css" rel="stylesheet" type="text/css"/>
+	<link href='../node_modules/core/main.css' rel='stylesheet' type="text/css"/>
+	<link href='../node_modules/daygrid/main.css' rel='stylesheet' type="text/css"/>
 	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans"/>
-	<script src="../js/jquery-1.12.4.js"></script>
-	<script src="../js/jquery-ui1.12.1.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.js"></script>
-	<script src="../js/angularScript.js"></script>
-	<script src="../js/projektScript.js"></script>
+	<script type="text/javascript" src="../node_modules/jquery.min.js"></script>
+	<script type="text/javascript" src="../node_modules/moment.min.js"></script>
+	<script type="text/javascript" src="../node_modules/angular.min.js"></script>
+	<script type="text/javascript" src="../node_modules/calendar.js"></script>
+	<script type="text/javascript" src="../node_modules/fullcalendar.min.js"></script>
+	<script type="text/javascript" src="../node_modules/gcal.js"></script>
+	<script type="text/javascript" src="../node_modules/core/main.js"></script>
+	<script type="text/javascript" src="../node_modules/daygrid/main.js"></script>
+	<script type="text/javascript" src="../js/projektScript.js"></script>
+	<script type="text/javascript" src="../js/angularScript.js"></script>
 </head>
 <body ng-app="customServerApp">
-<div ng-controller="utilityController">
+<div>
 	<div id="naviBar">
 		<br>
 		<br>
@@ -38,8 +46,7 @@
 <div id="topBar">
 	<label id="currentTabText">Project Calendar</label>
 </div>
-<form id="mainContent">
-	<div>Welcome Back!</div>
+<form id="mainContent" ng-controller="calendarController">
 </form>
 </body>
 </html>

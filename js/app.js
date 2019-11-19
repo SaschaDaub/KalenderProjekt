@@ -23,16 +23,52 @@ app.get("/js/projektScript.js", (req, res) => {
 	res.sendFile(filename, {root: path.join("./js")});
 });
 
-app.get("/js/jquery-1.12.4.js", (req, res) => {
-	var filename = 'jquery-1.12.4.js'
+app.get("/node_modules/jquery.min.js", (req, res) => {
+	var filename = 'jquery.min.js'
 	res.contentType(filename);
-	res.sendFile(filename, {root: path.join("./js")});
+	res.sendFile(filename, {root: path.join("./node_modules/jquery/dist")});
 });
 
-app.get("/js/jquery-ui1.12.1.js", (req, res) => {
-	var filename = 'jquery-ui1.12.1.js'
+app.get("/node_modules/moment.min.js", (req, res) => {
+	var filename = 'moment.min.js'
 	res.contentType(filename);
-	res.sendFile(filename, {root: path.join("./js")});
+	res.sendFile(filename, {root: path.join("./node_modules/moment/min")});
+});
+
+app.get("/node_modules/angular.min.js", (req, res) => {
+	var filename = 'angular.min.js'
+	res.contentType(filename);
+	res.sendFile(filename, {root: path.join("./node_modules/angular")});
+});
+
+app.get("/node_modules/calendar.js", (req, res) => {
+	var filename = 'calendar.js'
+	res.contentType(filename);
+	res.sendFile(filename, {root: path.join("./node_modules/angular-ui-calendar/src")});
+});
+
+app.get("/node_modules/fullcalendar.min.js", (req, res) => {
+	var filename = 'fullcalendar.min.js'
+	res.contentType(filename);
+	res.sendFile(filename, {root: path.join("./node_modules/fullcalendar/dist")});
+});
+
+app.get("/node_modules/gcal.js", (req, res) => {
+	var filename = 'gcal.js'
+	res.contentType(filename);
+	res.sendFile(filename, {root: path.join("./node_modules/fullcalendar/dist")});
+});
+
+app.get("/node_modules/core/main.js", (req, res) => {
+	var filename = 'main.js'
+	res.contentType(filename);
+	res.sendFile(filename, {root: path.join("./node_modules/@fullcalendar/core")});
+});
+
+app.get("/node_modules/daygrid/main.js", (req, res) => {
+	var filename = 'main.js'
+	res.contentType(filename);
+	res.sendFile(filename, {root: path.join("./node_modules/@fullcalendar/daygrid")});
 });
 
 app.get("/css/styles.css", (req, res) => {
@@ -43,16 +79,24 @@ app.get("/css/all.css", (req, res) => {
 	res.sendFile("all.css", {root: path.join("./css")});
 });
 
+app.get("/node_modules/fullcalendar.css", (req, res) => {
+	res.sendFile("fullcalendar.css", {root: path.join("./node_modules/fullcalendar/dist")});
+});
+
+app.get("/node_modules/core/main.css", (req, res) => {
+	res.sendFile("main.css", {root: path.join("./node_modules/@fullcalendar/core")});
+});
+
+app.get("/node_modules/daygrid/main.css", (req, res) => {
+	res.sendFile("main.css", {root: path.join("./node_modules/@fullcalendar/daygrid")});
+});
+
 app.get("/externals/accountLogoDefault.png", (req, res) => {
 	res.sendFile("accountLogoDefault.png", {root: path.join("./externals")});
 });
 
 app.get("/externals/trennstrich_kolli3.png", (req, res) => {
 	res.sendFile("trennstrich_kolli3.png", {root: path.join("./externals")});
-});
-
-app.get("/css/all.css", (req, res) => {
-	res.sendFile("all.css", {root: path.join("./css")});
 });
 
 app.get("/webfonts/fa-solid-900.woff2", (req, res) => {

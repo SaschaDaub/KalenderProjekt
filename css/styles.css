@@ -120,16 +120,11 @@ html, body {
 }
 
 #mainContent {
-	height: 87%;
-	height: auto !important;
-	min-height: 87%;
 	width: 95%;
 	margin-left: 5%;
 }
 
-#mainContent div {
-	margin-left: 50%;
-	font-family: Open Sans;
-	font-weight: lighter;
-	color: darkgrey;
+.fc-toolbar.fc-header-toolbar {
+	margin-bottom: 1em;
+	height: 2em;
 }
