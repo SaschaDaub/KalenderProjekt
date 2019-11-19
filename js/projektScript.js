@@ -12,7 +12,7 @@ function navigationClickHandler(parent) {
 		$('#mainContent').append(calendarEl);
 		var calendar = new FullCalendar.Calendar(calendarEl[0], {
 			plugins: [ 'dayGrid' ],
-			height:  800,
+			height:  'parent',
 			editable: true,
 			header: {
 				left: 'month basicWeek basicDay agendaWeek agendaDay',
