@@ -122,6 +122,7 @@ html, body {
 #mainContent {
 	width: 95%;
 	margin-left: 5%;
+	margin-top: 0.8rem;
 }
 
 .fc-toolbar.fc-header-toolbar {
