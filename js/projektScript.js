@@ -35,6 +35,7 @@ function navigationClickHandler(parent) {
 			},
 			editable: true,
 			selectable: true,
+			eventLimit: true,
 			events: events_array,
 			select: function(start, end) {
 				var windowHeight = $(window).height(),

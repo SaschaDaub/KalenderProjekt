@@ -197,6 +197,14 @@ html, body {
 
 #confirmNewEvent {
 	float: right;
+	border-style: solid;
+	border-color: darkgrey;
+	background-color: #f2f2f2;
+}
+
+#confirmNewEvent:hover {
+	cursor: pointer;
+	background-color: darkgrey;
 }
 
 .fc-right {
