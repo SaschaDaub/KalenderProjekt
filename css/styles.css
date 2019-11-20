@@ -198,3 +198,11 @@ html, body {
 #confirmNewEvent {
 	float: right;
 }
+
+.fc-right {
+	margin-left: 25%;
+}
+
+.fc-center {
+	margin-left: 25%;
+}
