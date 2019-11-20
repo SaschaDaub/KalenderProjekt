@@ -4,7 +4,7 @@
     height:100%;
     width: 5%;
 	width: auto !important;
-	min-width: 5%;
+	min-width: 5.9375rem;
 	max-width: 5%;
     float: left;
     background-color: #3eb7c9;
@@ -12,6 +12,11 @@
 
 body {
     margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	min-width: 1000px;
+	min-height: 937px;
 }
 
 html, body {
@@ -70,11 +75,14 @@ html, body {
 }
 
 #accountLogo {
-    border-radius: 100%;
-    width: 50%;
-    margin-left: 1.5em;
-    margin-top: -2em;
-	color: white;
+	border-radius: 50%;
+	padding: 0.5625rem;
+	margin-left: 1.5625rem;
+	margin-top: -2rem;
+	color: #216670;
+	background-color: #2e97a6;
+	text-align: center;
+	font-size: 225%;
 }
 
 #logOutIconDiv {
@@ -83,6 +91,7 @@ html, body {
     color: #216670;
     text-align: center;
     margin-right: 1rem;
+	position: sticky;
 }
 
 #logOutIcon {
@@ -96,12 +105,11 @@ html, body {
 }
 
 #topBar {
-    min-height: 13%;
+    min-height: 8%;
     height: auto !important;
-    height: 13%;
-    width: 95%;
+    height: 8%;
+    width: 100%;
     background-color: #3f4d4f;
-    margin-left: 5%;
 }
 
 .buttonClicked {
@@ -123,14 +131,23 @@ html, body {
 #mainContent {
 	width: auto !important;
 	min-width: 95%;
-	width: 95%;
-	margin-left: 5%;
+	width: 100%;
 	height: auto !important;
-	height: 87%;
-	min-height: 87%;
+	height: 92%;
+	min-height: 92%;
 }
 
 .fc-toolbar.fc-header-toolbar {
 	margin-bottom: 1em;
 	height: 2em;
+}
+
+#contentTobBarWrapper {
+	height: 100%;
+	min-height: 100%;
+}
+
+.flex-container {
+	display: flex;
+	flex-direction: column;
 }

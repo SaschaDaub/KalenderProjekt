@@ -91,14 +91,6 @@ app.get("/node_modules/daygrid/main.css", (req, res) => {
 	res.sendFile("main.css", {root: path.join("./node_modules/@fullcalendar/daygrid")});
 });
 
-app.get("/externals/accountLogoDefault.png", (req, res) => {
-	res.sendFile("accountLogoDefault.png", {root: path.join("./externals")});
-});
-
-app.get("/externals/trennstrich_kolli3.png", (req, res) => {
-	res.sendFile("trennstrich_kolli3.png", {root: path.join("./externals")});
-});
-
 app.get("/webfonts/fa-solid-900.woff2", (req, res) => {
 	res.sendFile("fa-solid-900.woff2", {root: path.join("./webfonts")});
 });
