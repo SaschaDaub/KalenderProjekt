@@ -71,6 +71,18 @@ app.get("/node_modules/daygrid/main.js", (req, res) => {
 	res.sendFile(filename, {root: path.join("./node_modules/@fullcalendar/daygrid")});
 });
 
+app.get("/node_modules/interaction/main.js", (req, res) => {
+	var filename = 'main.js'
+	res.contentType(filename);
+	res.sendFile(filename, {root: path.join("./node_modules/@fullcalendar/interaction")});
+});
+
+app.get("/node_modules/moment/main.js", (req, res) => {
+	var filename = 'main.js'
+	res.contentType(filename);
+	res.sendFile(filename, {root: path.join("./node_modules/@fullcalendar/moment")});
+});
+
 app.get("/css/styles.css", (req, res) => {
 	res.sendFile("styles.css", {root: path.join("./css")});
 });
