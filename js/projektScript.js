@@ -19,7 +19,7 @@ function navigationClickHandler(parent) {
 		var events_array = [];
 
 		var $modal = $('.modal'),
-			$close = $('.close'),
+			$close = $('.btn-close'),
 			$confirmButton = $('#btn-confirm');
 
 		var calendarEl = $('<div/>').attr('id', 'calendar');
