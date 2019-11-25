@@ -13,8 +13,15 @@ $(document).ready(function () {
 		newEvent.start = $('#newEventStartDate')[0].value;
 		newEvent.end = $('#newEventEndDate')[0].value;
 		newEvent.allDay = false;
+		newEvent.id = events_array.length + 1;
 
-		events_array.push(newEvent);
+		events_array.push({
+			id: newEvent.id,
+			title: newEvent.title,
+			start: newEvent.start,
+			end: newEvent.end,
+			allDay: newEvent.allDay
+		});
 
 		$('#calendar').fullCalendar('renderEvent', newEvent);
 		$modal.hide();
@@ -56,6 +63,8 @@ function navigationClickHandler(parent) {
 				var windowHeight = $(window).height(),
 					windowWidth = $(window).width(),
 					modalWidth = windowWidth/4;
+
+				$('#newEventTitle')[0].value = '';
 
 				$modal.show();
 
