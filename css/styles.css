@@ -86,12 +86,11 @@ html, body {
 }
 
 #logOutIconDiv {
-    margin-left: 25%;
-    margin-top: 544%;
+    margin-top: 585%;
     color: #216670;
     text-align: center;
-    margin-right: 1rem;
 	position: sticky;
+	width: 93%;
 }
 
 #logOutIcon {
@@ -101,7 +100,7 @@ html, body {
 
 #logOutIcon label {
     font-family: Open Sans;
-    font-size:50%;
+    font-size:100%;
 }
 
 #topBar {

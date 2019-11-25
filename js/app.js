@@ -12,73 +12,73 @@ app.get("/", (req, res) => {
 });
 
 app.get("/js/angularScript.js", (req, res) => {
-	var filename = 'angularScript.js'
+	var filename = 'angularScript.js';
 	res.contentType(filename);
 	res.sendFile(filename, {root: path.join("./js")});
 });
 
 app.get("/js/projektScript.js", (req, res) => {
-	var filename = 'projektScript.js'
+	var filename = 'projektScript.js';
 	res.contentType(filename);
 	res.sendFile(filename, {root: path.join("./js")});
 });
 
 app.get("/node_modules/jquery.min.js", (req, res) => {
-	var filename = 'jquery.min.js'
+	var filename = 'jquery.min.js';
 	res.contentType(filename);
 	res.sendFile(filename, {root: path.join("./node_modules/jquery/dist")});
 });
 
 app.get("/node_modules/moment.min.js", (req, res) => {
-	var filename = 'moment.min.js'
+	var filename = 'moment.min.js';
 	res.contentType(filename);
 	res.sendFile(filename, {root: path.join("./node_modules/moment/min")});
 });
 
 app.get("/node_modules/angular.min.js", (req, res) => {
-	var filename = 'angular.min.js'
+	var filename = 'angular.min.js';
 	res.contentType(filename);
 	res.sendFile(filename, {root: path.join("./node_modules/angular")});
 });
 
 app.get("/node_modules/calendar.js", (req, res) => {
-	var filename = 'calendar.js'
+	var filename = 'calendar.js';
 	res.contentType(filename);
 	res.sendFile(filename, {root: path.join("./node_modules/angular-ui-calendar/src")});
 });
 
 app.get("/node_modules/fullcalendar.min.js", (req, res) => {
-	var filename = 'fullcalendar.min.js'
+	var filename = 'fullcalendar.min.js';
 	res.contentType(filename);
 	res.sendFile(filename, {root: path.join("./node_modules/fullcalendar/dist")});
 });
 
 app.get("/node_modules/gcal.js", (req, res) => {
-	var filename = 'gcal.js'
+	var filename = 'gcal.js';
 	res.contentType(filename);
 	res.sendFile(filename, {root: path.join("./node_modules/fullcalendar/dist")});
 });
 
 app.get("/node_modules/core/main.js", (req, res) => {
-	var filename = 'main.js'
+	var filename = 'main.js';
 	res.contentType(filename);
 	res.sendFile(filename, {root: path.join("./node_modules/@fullcalendar/core")});
 });
 
 app.get("/node_modules/daygrid/main.js", (req, res) => {
-	var filename = 'main.js'
+	var filename = 'main.js';
 	res.contentType(filename);
 	res.sendFile(filename, {root: path.join("./node_modules/@fullcalendar/daygrid")});
 });
 
 app.get("/node_modules/interaction/main.js", (req, res) => {
-	var filename = 'main.js'
+	var filename = 'main.js';
 	res.contentType(filename);
 	res.sendFile(filename, {root: path.join("./node_modules/@fullcalendar/interaction")});
 });
 
 app.get("/node_modules/moment/main.js", (req, res) => {
-	var filename = 'main.js'
+	var filename = 'main.js';
 	res.contentType(filename);
 	res.sendFile(filename, {root: path.join("./node_modules/@fullcalendar/moment")});
 });
