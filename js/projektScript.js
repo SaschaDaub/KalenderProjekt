@@ -1,5 +1,20 @@
 $(document).ready(function () {
+	var $confirmButton = $('#btn-confirm');
+	var $modal = $('.modal');
+	var newEvent = {};
+
 	$('#naviButtons i').click({param1: $(this).parentElement}, navigationClickHandler);
+
+
+	$confirmButton.on('click', function(e) {
+		newEvent.title = $('#newEventTitle')[0].value;
+		newEvent.start = $('#newEventStartDate')[0].value;
+		newEvent.end = $('#newEventEndDate')[0].value;
+		newEvent.allDay = false;
+
+		$('#calendar').fullCalendar('renderEvent', newEvent);
+		$modal.hide();
+	});
 });
 
 
@@ -19,8 +34,7 @@ function navigationClickHandler(parent) {
 		var events_array = [];
 
 		var $modal = $('.modal'),
-			$close = $('.btn-close'),
-			$confirmButton = $('#btn-confirm');
+			$close = $('.btn-close');
 
 		var calendarEl = $('<div/>').attr('id', 'calendar');
 		$('#mainContent').append(calendarEl);
@@ -47,19 +61,8 @@ function navigationClickHandler(parent) {
 						$('.modal').hide();
 				});
 
-				var newEvent = {};
 				$('#newEventStartDate')[0].value = moment(start).format('YYYY-MM-DD');
 				$('#newEventEndDate')[0].value = moment(end).format('YYYY-MM-DD');
-				newEvent.allDay = false;
-
-				$confirmButton.on('click', function(e) {
-					newEvent.title = $('#newEventTitle')[0].value;
-					newEvent.start = $('#newEventStartDate')[0].value;
-					newEvent.end = $('#newEventEndDate')[0].value;
-					$('#calendar').fullCalendar('renderEvent', newEvent);
-					$modal.hide();
-				});
-
 			}
 		});
 	}
