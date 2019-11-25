@@ -220,8 +220,12 @@ html, body {
 	top: -90% !important;
 }
 
-#inputWrapper input{
+.mainInput{
 	margin-bottom: 3%;
+}
+
+#inputWrapper input[type=date] {
+	margin-right: 1rem;
 }
 
 #labelWrapper label {

@@ -1,3 +1,15 @@
+/*var startDate = [start._d.getMonth().AddZero(),
+				start._d.getDate().AddZero(),
+				start._d.getFullYear()].join('/') + ', ' +
+					[start._d.getHours().AddZero(),
+					start._d.getMinutes().AddZero()].join(':');
+
+				var endDate = [end._d.getMonth().AddZero(),
+						end._d.getDate().AddZero(),
+						end._d.getFullYear()].join('/') + ', ' +
+					[end._d.getHours().AddZero(),
+						end._d.getMinutes().AddZero()].join(':'); */
+
 var events_array = [];
 
 $(document).ready(function () {
@@ -10,9 +22,11 @@ $(document).ready(function () {
 
 	$confirmButton.on('click', function(e) {
 		newEvent.title = $('#newEventTitle')[0].value;
-		newEvent.start = $('#newEventStartDate')[0].value;
-		newEvent.end = $('#newEventEndDate')[0].value;
-		newEvent.allDay = false;
+		newEvent.start = $('#newEventStartDate')[0].value + 'T' + $('#newEventStartTime')[0].value;
+		newEvent.end = $('#newEventEndDate')[0].value + 'T' + $('#newEventEndTime')[0].value;
+		newEvent.color = $('#newEventColor')[0].value;
+		newEvent.textColor = $('#newEventTextColor')[0].value;
+		newEvent.allDayDefault = false;
 		newEvent.id = events_array.length + 1;
 
 		events_array.push({
@@ -20,7 +34,9 @@ $(document).ready(function () {
 			title: newEvent.title,
 			start: newEvent.start,
 			end: newEvent.end,
-			allDay: newEvent.allDay
+			allDayDefault: newEvent.allDayDefault,
+			color: newEvent.color,
+			textColor: newEvent.textColor
 		});
 
 		$('#calendar').fullCalendar('renderEvent', newEvent);
@@ -72,8 +88,11 @@ function navigationClickHandler(parent) {
 						$('.modal').hide();
 				});
 
-				$('#newEventStartDate')[0].value = moment(start).format('YYYY-MM-DD');
-				$('#newEventEndDate')[0].value = moment(end).format('YYYY-MM-DD');
+				$('#newEventStartDate')[0].value = moment(start).format();
+				$('#newEventEndDate')[0].value = moment(end).format();
+			},
+			dateClick: function(info) {
+				prompt("You want to delete this event?");
 			}
 		});
 	} else if (parent.currentTarget.title === "Appointments") {
