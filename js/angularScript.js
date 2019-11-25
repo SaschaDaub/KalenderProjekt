@@ -4,6 +4,8 @@ var app = angular.module('customServerApp', ['ui.calendar']);
 app.controller('calendarController', function($scope) {
 	$scope.eventSources = [];
 
+	$scope.toggle = false;
+
 	$scope.uiConfig = {
 		calendar: {
 			height:  800,
@@ -19,3 +21,5 @@ app.controller('calendarController', function($scope) {
 		}
 	}
 });
+
+app.directive('tooltip');

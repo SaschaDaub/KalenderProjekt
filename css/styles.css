@@ -86,11 +86,11 @@ html, body {
 }
 
 #logOutIconDiv {
-    margin-top: 585%;
-    color: #216670;
-    text-align: center;
-	position: sticky;
-	width: 93%;
+	color: #216670;
+	text-align: center;
+	position: absolute;
+	bottom: 0.2%;
+	left: 0.3%;
 }
 
 #logOutIcon {
