@@ -1,3 +1,5 @@
+var events_array = [];
+
 $(document).ready(function () {
 	var $confirmButton = $('#btn-confirm');
 	var $modal = $('.modal');
@@ -11,6 +13,8 @@ $(document).ready(function () {
 		newEvent.start = $('#newEventStartDate')[0].value;
 		newEvent.end = $('#newEventEndDate')[0].value;
 		newEvent.allDay = false;
+
+		events_array.push(newEvent);
 
 		$('#calendar').fullCalendar('renderEvent', newEvent);
 		$modal.hide();
@@ -30,8 +34,6 @@ function navigationClickHandler(parent) {
 		var d = date.getDate();
 		var m = date.getMonth();
 		var y = date.getFullYear();
-
-		var events_array = [];
 
 		var $modal = $('.modal'),
 			$close = $('.btn-close');
@@ -64,6 +66,15 @@ function navigationClickHandler(parent) {
 				$('#newEventStartDate')[0].value = moment(start).format('YYYY-MM-DD');
 				$('#newEventEndDate')[0].value = moment(end).format('YYYY-MM-DD');
 			}
+		});
+	} else if (parent.currentTarget.title === "Appointments") {
+		var calendarEl = $('<div/>').attr('id', 'calendar');
+		$('#mainContent').append(calendarEl);
+		$('#calendar').fullCalendar({
+			plugins: ['list'],
+			height: 'parent',
+			defaultView: 'listWeek',
+			events: events_array
 		});
 	}
 }

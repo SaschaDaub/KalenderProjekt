@@ -83,6 +83,12 @@ app.get("/node_modules/moment/main.js", (req, res) => {
 	res.sendFile(filename, {root: path.join("./node_modules/@fullcalendar/moment")});
 });
 
+app.get("/node_modules/list/main.js", (req, res) => {
+	var filename = 'main.js';
+	res.contentType(filename);
+	res.sendFile(filename, {root: path.join("./node_modules/@fullcalendar/list")});
+});
+
 app.get("/css/styles.css", (req, res) => {
 	res.sendFile("styles.css", {root: path.join("./css")});
 });
@@ -101,6 +107,10 @@ app.get("/node_modules/core/main.css", (req, res) => {
 
 app.get("/node_modules/daygrid/main.css", (req, res) => {
 	res.sendFile("main.css", {root: path.join("./node_modules/@fullcalendar/daygrid")});
+});
+
+app.get("/node_modules/list/main.css", (req, res) => {
+	res.sendFile("main.css", {root: path.join("./node_modules/@fullcalendar/list")});
 });
 
 app.get("/webfonts/fa-solid-900.woff2", (req, res) => {
