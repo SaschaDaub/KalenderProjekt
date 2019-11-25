@@ -9,6 +9,8 @@
 	<link href='../node_modules/core/main.css' rel='stylesheet' type="text/css"/>
 	<link href='../node_modules/daygrid/main.css' rel='stylesheet' type="text/css"/>
 	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans"/>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script type="text/javascript" src="../node_modules/moment.min.js"></script>
 	<script type="text/javascript" src="../node_modules/jquery.min.js"></script>
 	<script type="text/javascript" src="../node_modules/angular.min.js"></script>
@@ -50,18 +52,35 @@
 	<form id="mainContent" ng-controller="calendarController">
 	</form>
 </div>
-<div class="overlay">
-	<div id="modal">
-		<!-- close trigger -->
-		<i class="fas fa-times" id="close"></i>
-		<!-- modal content -->
+<div class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<p>
-			<h4>Add new Event</h4>
-			<label>Title:</label> <input type="text" id="newEventTitle">
-			<br>
-			<button id="confirmNewEvent">Confirm</button>
-			</p>
+			<div class="modal-header">
+				<h5 class="modal-title">Add New Event</h5>
+				<button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div id="labelWrapper">
+					<label>Title:</label>
+					<br>
+					<label>Start Date:</label>
+					<br>
+					<label>End Date:</label>
+				</div>
+				<div id="inputWrapper">
+					<input type="text" id="newEventTitle">
+					<br>
+					<input type="date" id="newEventStartDate">
+					<br>
+					<input type="date" id="newEventEndDate">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="btn-confirm">Confirm</button>
+				<button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
+			</div>
 		</div>
 	</div>
 </div>

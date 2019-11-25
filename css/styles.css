@@ -173,7 +173,10 @@ html, body {
 	left: 50%;
 	padding: 20px;
 	width: 25%;
-	background: #f2f2f2;
+	background: white;
+	border-top-style: solid;
+	border-color: #45c9de;
+	border-top-width: 2.6875rem;
 }
 
 #close {
@@ -196,10 +199,9 @@ html, body {
 }
 
 #confirmNewEvent {
-	float: right;
-	border-style: solid;
-	border-color: darkgrey;
 	background-color: #f2f2f2;
+	margin-top: 2%;
+	margin-left: 76%;
 }
 
 #confirmNewEvent:hover {
@@ -217,4 +219,39 @@ html, body {
 
 .fc-icon:after {
 	top: -90% !important;
+}
+
+#inputWrapper input{
+	margin-bottom: 3%;
+}
+
+#labelWrapper label {
+	margin-bottom: 16%;
+}
+
+#inputWrapper {
+	float: right;
+	text-align: left;
+	margin-right: 10%;
+}
+
+#labelWrapper {
+	text-align: right;
+	float: left;
+	margin-left: 10%;
+}
+
+.modal-header {
+	background-color: #3eb7c9;
+	color: white;
+}
+
+.btn-primary:hover {
+	background-color: #216670 !important;
+	border-color: #216670 !important;
+}
+
+.btn-primary {
+	background-color: #3eb7c9 !important;
+	border-color: #3eb7c9 !important;
 }
