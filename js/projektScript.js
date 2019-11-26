@@ -119,6 +119,9 @@ function navigationClickHandler(parent) {
             eventLimit: true,
             events: events_array,
             select: function (start, end) {
+                if ($('#delete-button').length > 0) {
+                    $('#delete-button').remove();
+                }
                 $('.modal')[0].attributes.usage = "add";
                 var windowHeight = $(window).height(),
                     windowWidth = $(window).width(),
@@ -152,17 +155,20 @@ function navigationClickHandler(parent) {
                 $('.modal')[0].attributes.usage = "edit";
                 $('.modal-title').text('Edit Event: ' + event.title);
                 $('.modal-header').addClass('modal-edit');
-                var deleteButton = $('<button>').attr('id', 'delete-button')
-                    .text('Delete')
-                    .addClass('btn')
-                    .click(function() {
-                        $('#calendar').fullCalendar('removeEvents', event._id);
-                        events_array.splice(event.id - 1, 1);
-                        $modal.hide();
-                        $(this).remove();
-                    });
 
-                $('.modal-footer').append(deleteButton);
+                if ($('#delete-button').length === 0) {
+                    var deleteButton = $('<button>').attr('id', 'delete-button')
+                        .text('Delete')
+                        .addClass('btn')
+                        .click(function () {
+                            $('#calendar').fullCalendar('removeEvents', event._id);
+                            events_array.splice(event.id - 1, 1);
+                            $modal.hide();
+                            $(this).remove();
+                        });
+                    $('.modal-footer').append(deleteButton);
+                }
+
                 clickedEvent = event;
                 $modal.show();
             }
