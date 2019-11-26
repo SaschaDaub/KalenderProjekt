@@ -21,13 +21,24 @@ $(document).ready(function () {
 
 
 	$confirmButton.on('click', function(e) {
+		var newEventStartTime = $('#newEventStartTime')[0].value;
+		var newEventEndTime = $('#newEventEndTime')[0].value;
+
 		newEvent.title = $('#newEventTitle')[0].value;
-		newEvent.start = $('#newEventStartDate')[0].value + 'T' + $('#newEventStartTime')[0].value;
-		newEvent.end = $('#newEventEndDate')[0].value + 'T' + $('#newEventEndTime')[0].value;
+		newEvent.start = $('#newEventStartDate')[0].value;
+		newEvent.end = $('#newEventEndDate')[0].value;
 		newEvent.color = $('#newEventColor')[0].value;
 		newEvent.textColor = $('#newEventTextColor')[0].value;
 		newEvent.allDayDefault = false;
 		newEvent.id = events_array.length + 1;
+
+		if (newEventStartTime) {
+			newEvent.start += 'T' + newEventStartTime;
+		}
+
+		if (newEventEndTime) {
+			newEvent.end += 'T' + newEventEndTime;
+		}
 
 		events_array.push({
 			id: newEvent.id,

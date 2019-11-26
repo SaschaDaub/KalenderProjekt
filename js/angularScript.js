@@ -21,5 +21,3 @@ app.controller('calendarController', function($scope) {
 		}
 	}
 });
-
-app.directive('tooltip');
