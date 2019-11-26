@@ -15,8 +15,8 @@ body {
 	padding: 0;
 	width: 100%;
 	height: 100%;
-	min-width: 1000px;
-	min-height: 937px;
+	min-width: 1515px;
+	min-height: 600px;
 }
 
 html, body {
@@ -257,4 +257,26 @@ html, body {
 .btn-primary {
 	background-color: #3eb7c9 !important;
 	border-color: #3eb7c9 !important;
+}
+
+#newEventTextColor {
+	margin-right: 36%;
+}
+
+#isAllDayDefault {
+	margin-left: 6%;
+}
+
+.modal-edit {
+	background-color: #216670 !important;
+}
+
+#delete-button {
+	background-color: #f2456f;
+	color: white;
+	margin-left: 2%;
+}
+
+#delete-button:hover {
+	background-color: #ad3250;
 }

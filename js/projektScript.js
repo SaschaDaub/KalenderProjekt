@@ -10,110 +10,171 @@
 					[end._d.getHours().AddZero(),
 						end._d.getMinutes().AddZero()].join(':'); */
 
+function getNewEventValues(newEvent) {
+    var newEventStartTime = $('#newEventStartTime')[0].value;
+    var newEventEndTime = $('#newEventEndTime')[0].value;
+
+    newEvent.title = $('#newEventTitle')[0].value;
+    newEvent.start = $('#newEventStartDate')[0].value;
+    newEvent.end = $('#newEventEndDate')[0].value;
+    newEvent.color = $('#newEventColor')[0].value;
+    newEvent.textColor = $('#newEventTextColor')[0].value;
+    newEvent.allDay = $('#isAllDayDefault')[0].value;
+    newEvent.id = events_array.length + 1;
+
+    if (newEventStartTime) {
+        newEvent.start += 'T' + newEventStartTime;
+    }
+
+    if (newEventEndTime) {
+        newEvent.end += 'T' + newEventEndTime;
+    }
+
+    return newEvent;
+}
+
+function addNewEvent(newEvent, $modal) {
+    newEvent = getNewEventValues(newEvent);
+
+    events_array.push({
+        id: newEvent.id,
+        title: newEvent.title,
+        start: newEvent.start,
+        end: newEvent.end,
+        allDay: newEvent.allDay,
+        color: newEvent.color,
+        textColor: newEvent.textColor
+    });
+
+    $('#calendar').fullCalendar('renderEvent', newEvent);
+    $modal.hide();
+}
+
+function editEvent(newEvent, $modal) {
+    newEvent = getNewEventValues(newEvent);
+
+    clickedEvent.title = newEvent.title;
+    clickedEvent.start = newEvent.start;
+    clickedEvent.end = newEvent.end;
+    clickedEvent.allDay = newEvent.allDay;
+    clickedEvent.color = newEvent.color;
+    clickedEvent.textColor = newEvent.textColor;
+
+    $('#calendar').fullCalendar('updateEvent', clickedEvent);
+    $modal.hide();
+}
+
+
 var events_array = [];
+var clickedEvent;
 
 $(document).ready(function () {
-	var $confirmButton = $('#btn-confirm');
-	var $modal = $('.modal');
-	var newEvent = {};
+    var $confirmButton = $('#btn-confirm');
+    var $modal = $('.modal');
+    var newEvent = {};
 
-	$('#naviButtons i').click({param1: $(this).parentElement}, navigationClickHandler);
+    $('#naviButtons i').click({param1: $(this).parentElement}, navigationClickHandler);
 
 
-	$confirmButton.on('click', function(e) {
-		var newEventStartTime = $('#newEventStartTime')[0].value;
-		var newEventEndTime = $('#newEventEndTime')[0].value;
+    $confirmButton.on('click', function (e) {
+        var usage = $('.modal')[0].attributes.usage;
 
-		newEvent.title = $('#newEventTitle')[0].value;
-		newEvent.start = $('#newEventStartDate')[0].value;
-		newEvent.end = $('#newEventEndDate')[0].value;
-		newEvent.color = $('#newEventColor')[0].value;
-		newEvent.textColor = $('#newEventTextColor')[0].value;
-		newEvent.allDayDefault = false;
-		newEvent.id = events_array.length + 1;
-
-		if (newEventStartTime) {
-			newEvent.start += 'T' + newEventStartTime;
-		}
-
-		if (newEventEndTime) {
-			newEvent.end += 'T' + newEventEndTime;
-		}
-
-		events_array.push({
-			id: newEvent.id,
-			title: newEvent.title,
-			start: newEvent.start,
-			end: newEvent.end,
-			allDayDefault: newEvent.allDayDefault,
-			color: newEvent.color,
-			textColor: newEvent.textColor
-		});
-
-		$('#calendar').fullCalendar('renderEvent', newEvent);
-		$modal.hide();
-	});
+        if (usage === "add") {
+            addNewEvent(newEvent, $modal);
+        } else if (usage === "edit") {
+            editEvent(newEvent, $modal);
+        }
+    });
 });
 
 
-
 function navigationClickHandler(parent) {
-	$('#mainContent').children().remove();
-	$('#naviButtons li').removeClass('buttonClicked');
-	parent.currentTarget.parentElement.className += 'buttonClicked';
-	$('#currentTabText').text(parent.currentTarget.title);
+    $('#mainContent').children().remove();
+    $('#naviButtons li').removeClass('buttonClicked');
+    parent.currentTarget.parentElement.className += 'buttonClicked';
+    $('#currentTabText').text(parent.currentTarget.title);
 
-	if (parent.currentTarget.title === "Calendar") {
-		var date = new Date();
-		var d = date.getDate();
-		var m = date.getMonth();
-		var y = date.getFullYear();
+    if (parent.currentTarget.title === "Calendar") {
+        var date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
 
-		var $modal = $('.modal'),
-			$close = $('.btn-close');
+        var $modal = $('.modal'),
+            $close = $('.btn-close');
 
-		var calendarEl = $('<div/>').attr('id', 'calendar');
-		$('#mainContent').append(calendarEl);
-		$('#calendar').fullCalendar({
-			plugins: [ 'interaction', 'dayGrid' , 'moment'],
-			height:  'parent',
-			header: {
-				left: 'month basicWeek basicDay agendaWeek agendaDay',
-				center: 'today prev,next',
-				right: 'title'
-			},
-			editable: true,
-			selectable: true,
-			eventLimit: true,
-			events: events_array,
-			select: function(start, end) {
-				var windowHeight = $(window).height(),
-					windowWidth = $(window).width(),
-					modalWidth = windowWidth/4;
+        var calendarEl = $('<div/>').attr('id', 'calendar');
+        $('#mainContent').append(calendarEl);
+        $('#calendar').fullCalendar({
+            plugins: ['interaction', 'dayGrid', 'moment'],
+            height: 'parent',
+            header: {
+                left: 'month basicWeek basicDay agendaWeek agendaDay',
+                center: 'today prev,next',
+                right: 'title'
+            },
+            editable: true,
+            selectable: true,
+            selectHelper: true,
+            eventLimit: true,
+            events: events_array,
+            select: function (start, end) {
+                $('.modal')[0].attributes.usage = "add";
+                var windowHeight = $(window).height(),
+                    windowWidth = $(window).width(),
+                    modalWidth = windowWidth / 4;
 
-				$('#newEventTitle')[0].value = '';
+                $('.modal-header').removeClass('modal-edit');
 
-				$modal.show();
+                $('#newEventTitle')[0].value = '';
 
-				$close.on('click', function() {
-						$('.modal').hide();
-				});
+                $('.modal-title').text('Add New Event');
 
-				$('#newEventStartDate')[0].value = moment(start).format();
-				$('#newEventEndDate')[0].value = moment(end).format();
-			},
-			dateClick: function(info) {
-				prompt("You want to delete this event?");
-			}
-		});
-	} else if (parent.currentTarget.title === "Appointments") {
-		var calendarEl = $('<div/>').attr('id', 'calendar');
-		$('#mainContent').append(calendarEl);
-		$('#calendar').fullCalendar({
-			plugins: ['list'],
-			height: 'parent',
-			defaultView: 'listWeek',
-			events: events_array
-		});
-	}
+                $modal.show();
+
+                $close.on('click', function () {
+                    $('.modal').hide();
+                });
+
+                $('#newEventStartDate')[0].value = moment(start).format();
+                $('#newEventEndDate')[0].value = moment(end).format();
+            },
+
+            eventDrop: function (event, delta, revertFunc) {
+                var eventArrayId = event.id - 1;
+                events_array[eventArrayId].start = event.start;
+                events_array[eventArrayId].end = event.end;
+
+                $('#calendar').fullCalendar('updateEvent', event);
+            },
+
+            eventClick: function (event, element) {
+                $('.modal')[0].attributes.usage = "edit";
+                $('.modal-title').text('Edit Event: ' + event.title);
+                $('.modal-header').addClass('modal-edit');
+                var deleteButton = $('<button>').attr('id', 'delete-button')
+                    .text('Delete')
+                    .addClass('btn')
+                    .click(function() {
+                        $('#calendar').fullCalendar('removeEvents', event._id);
+                        events_array.splice(event.id - 1, 1);
+                        $modal.hide();
+                        $(this).remove();
+                    });
+
+                $('.modal-footer').append(deleteButton);
+                clickedEvent = event;
+                $modal.show();
+            }
+        });
+    } else if (parent.currentTarget.title === "Appointments") {
+        var calendarEl = $('<div/>').attr('id', 'calendar');
+        $('#mainContent').append(calendarEl);
+        $('#calendar').fullCalendar({
+            plugins: ['list'],
+            height: 'parent',
+            defaultView: 'listWeek',
+            events: events_array
+        });
+    }
 }
