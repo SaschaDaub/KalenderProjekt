@@ -19,7 +19,7 @@ function getNewEventValues(newEvent) {
     newEvent.end = $('#newEventEndDate')[0].value;
     newEvent.color = $('#newEventColor')[0].value;
     newEvent.textColor = $('#newEventTextColor')[0].value;
-    newEvent.allDay = $('#isAllDayDefault')[0].value;
+    newEvent.allDay = false;
     newEvent.id = events_array.length + 1;
 
     if (newEventStartTime) {
@@ -56,9 +56,14 @@ function editEvent(newEvent, $modal) {
     clickedEvent.title = newEvent.title;
     clickedEvent.start = newEvent.start;
     clickedEvent.end = newEvent.end;
-    clickedEvent.allDay = newEvent.allDay;
     clickedEvent.color = newEvent.color;
     clickedEvent.textColor = newEvent.textColor;
+
+    events_array[clickedEvent.id - 1].title = newEvent.title;
+    events_array[clickedEvent.id - 1].start = newEvent.start;
+    events_array[clickedEvent.id - 1].end = newEvent.end;
+    events_array[clickedEvent.id - 1].color = newEvent.color;
+    events_array[clickedEvent.id - 1].textColor = newEvent.textColor;
 
     $('#calendar').fullCalendar('updateEvent', clickedEvent);
     $modal.hide();
@@ -169,6 +174,8 @@ function navigationClickHandler(parent) {
                     $('.modal-footer').append(deleteButton);
                 }
 
+                $('#newEventStartDate')[0].value = moment(event.start).format('YYYY-MM-DD');
+                $('#newEventEndDate')[0].value = moment(event.end).format('YYYY-MM-DD');
                 clickedEvent = event;
                 $modal.show();
             }

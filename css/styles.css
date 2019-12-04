@@ -21,7 +21,7 @@ body {
 
 html, body {
   height:100%;
-  font-family: Open Sans;
+  font-family: Open Sans !important;
 }
 
 #naviButtons {
@@ -259,14 +259,6 @@ html, body {
 	border-color: #3eb7c9 !important;
 }
 
-#newEventTextColor {
-	margin-right: 36%;
-}
-
-#isAllDayDefault {
-	margin-left: 6%;
-}
-
 .modal-edit {
 	background-color: #216670 !important;
 }
@@ -280,3 +272,22 @@ html, body {
 #delete-button:hover {
 	background-color: #ad3250;
 }
+
+#mainContent button {
+	border: none;
+	background-color: unset !important;
+}
+
+#mainContent button:hover {
+	background-position: 0 !important;
+	-webkit-transition: background-position 0s !important;
+	-moz-transition: background-position 0s !important;
+	-o-transition: background-position 0s !important;
+	transition: background-position 0s !important;
+}
+
+.fc-header-toolbar {
+	height: 2.1em !important;
+	line-height: 2.1em !important;
+}
+
