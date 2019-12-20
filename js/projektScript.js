@@ -82,7 +82,7 @@ $(document).ready(function () {
 
 
     $confirmButton.on('click', function (e) {
-        var usage = $('.modal')[0].attributes.usage;
+        var usage = $('.modal')[0].attributes.usage.value;
 
         if (usage === "add") {
             addNewEvent(newEvent, $modal);
@@ -127,7 +127,7 @@ function navigationClickHandler(parent) {
                 if ($('#delete-button').length > 0) {
                     $('#delete-button').remove();
                 }
-                $('.modal')[0].attributes.usage = "add";
+                $('.modal').attr('usage', 'add');
                 var windowHeight = $(window).height(),
                     windowWidth = $(window).width(),
                     modalWidth = windowWidth / 4;
@@ -157,7 +157,7 @@ function navigationClickHandler(parent) {
             },
 
             eventClick: function (event, element) {
-                $('.modal')[0].attributes.usage = "edit";
+                $('.modal').attr('usage', 'edit');
                 $('.modal-title').text('Edit Event: ' + event.title);
                 $('.modal-header').addClass('modal-edit');
 

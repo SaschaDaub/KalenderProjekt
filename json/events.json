@@ -1,0 +1,11 @@
+{
+  "testData": {
+    "id": 1,
+    "title": "Testevent",
+    "start": "2019-12-07",
+    "end": "2019-12-08",
+    "allDay": false,
+    "color": "#0000ff",
+    "textColor": "#ffffff"
+  }
+}
