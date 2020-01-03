@@ -125,6 +125,10 @@ app.get("/webfonts/fa-solid-900.ttf", (req, res) => {
 	res.sendFile("fa-solid-900.ttf", {root: path.join("./webfonts")});
 });
 
+app.get("/json/events.json", (req, res) => {
+	res.sendFile("events.json", {root: path.join("./json")});
+});
+
 
 const server = http.createServer(app);
 
