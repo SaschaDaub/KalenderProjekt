@@ -123,13 +123,56 @@ function navigationClickHandler(parent) {
         });
     } else if (parent.currentTarget.title === "Appointments") {
         var calendarEl = $('<div/>').attr('id', 'calendar');
-        $('#mainContent').append(calendarEl);
+        var mainContentEl = $('#mainContent');
+
+        mainContentEl.append(calendarEl);
         $('#calendar').fullCalendar({
             plugins: ['list'],
-            height: 'parent',
+            height: 450,
             defaultView: 'listWeek',
             events: events_array
         });
+
+        var eventsOverview = $('<div/>');
+        var nextEvents = $('<h4/>').text('Coming Events').addClass('comingEvents');
+
+        eventsOverview.append($('<br>')).append(nextEvents);
+
+        var dateToday = new Date();
+        var diffInTime;
+        var diffInDays;
+
+        var counter = 0;
+
+        events_array.forEach(
+            function(element , index) {
+                var eventDate = new Date(element.start);
+
+                diffInTime = eventDate.getTime() - dateToday.getTime();
+                diffInDays = diffInTime / (1000 * 3600 * 24);
+                if (diffInDays > 0 && diffInDays < 60 && counter < 8) {
+                    var name = element.title;
+                    var start = element.start;
+
+                    var nameEl = $('<div/>').text(name).addClass('eventName');
+                    var startLabel = $('<div/>').text(start);
+
+                    var eventLine = $('<p/>').append(nameEl).append(startLabel);
+
+                    eventsOverview.append(eventLine);
+
+                    counter++;
+                }
+            }
+        );
+
+        mainContentEl.append(eventsOverview);
+    } else if (parent.currentTarget.title === "Polls") {
+        var newPollIcon = $('<i/>').addClass('fas fa-plus').attr('id', 'newPollIcon');
+        var newPollText = $('<span/>').text('Create Poll').attr('id', 'newPollText');
+        var newPollDiv = $('<div/>').attr('id', 'newPollDiv');
+        newPollDiv.append(newPollIcon).append(newPollText);
+        $('#mainContent').append(newPollDiv);
     }
 }
 

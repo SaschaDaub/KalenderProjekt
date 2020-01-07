@@ -308,3 +308,40 @@ html, body {
 	width: 16%;
 }
 
+.comingEvents {
+	margin-left: 2%;
+	margin-bottom: 2rem;
+}
+
+.eventName {
+	margin-left: 4%;
+	margin-right: 2%;
+	float: left;
+}
+
+#newPollDiv {
+	border-radius: 25px;
+	background-color: #3eb7c9;
+	margin-top: 1%;
+	width: 10%;
+	margin-left: 1%;
+	height: 5%;
+	opacity: 1;
+}
+
+#newPollDiv:hover {
+	background-color: #45c9de;
+	cursor: pointer;
+}
+
+#newPollIcon {
+	margin-left: 10%;
+	margin-top: 0.8125em;
+	color: white;
+}
+
+#newPollText {
+	color: white;
+	margin-left: 5%;
+}
+
