@@ -275,6 +275,7 @@ html, body {
 
 #mainContent button {
 	border: none !important;
+	border-radius: 17px;
 	background-color: #3eb7c9 !important;
 	background-image: none !important;
 }

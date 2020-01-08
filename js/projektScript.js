@@ -182,7 +182,7 @@ function navigationClickHandler(parent) {
                     var start = element.start;
 
                     var nameEl = $('<div/>').text(name).addClass('eventName');
-                    var startLabel = $('<div/>').text(start);
+                    var startLabel = $('<div/>').text(moment(start).format('YYYY-MM-DD'));
 
                     var eventLine = $('<p/>').append(nameEl).append(startLabel);
 
