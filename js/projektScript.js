@@ -15,10 +15,26 @@ $(document).ready(function () {
     $confirmButton.on('click', function (e) {
         var usage = $('.modal')[0].attributes.usage.value;
 
-        if (usage === "add") {
-            addNewEvent(newEvent, $modal);
-        } else if (usage === "edit") {
-            editEvent(newEvent, $modal);
+        var title = $('#newEventTitle')[0].value;
+        var start = $('#newEventStartDate')[0].value;
+        var end = $('#newEventEndDate')[0].value;
+        var startTime = $('#newEventStartTime')[0].value;
+        var endTime = $('#newEventEndTime')[0].value;
+
+
+        if ( title && start && end ) {
+            if ( (startTime && endTime) || (!startTime && !endTime) ) {
+                if (usage === "add") {
+                    addNewEvent(newEvent, $modal);
+                } else if (usage === "edit") {
+                    editEvent(newEvent, $modal);
+                }
+            } else {
+                window.alert('If you want to edit the specific time of an event, please make' +
+                    'sure that both inputs are filled.');
+            }
+        } else {
+            window.alert('The Fields Title, Start Date and End Date must be filled.');
         }
     });
 });
@@ -56,10 +72,13 @@ function navigationClickHandler(parent) {
             eventLimit: true,
             events: events_array,
             select: function (start, end) {
+
                 if ($('#delete-button').length > 0) {
                     $('#delete-button').remove();
                 }
+
                 $('.modal').attr('usage', 'add');
+
                 var windowHeight = $(window).height(),
                     windowWidth = $(window).width(),
                     modalWidth = windowWidth / 4;
@@ -70,16 +89,18 @@ function navigationClickHandler(parent) {
 
                 $('.modal-title').text('Add New Event');
 
-                $modal.show();
-
                 $close.on('click', function () {
                     $('.modal').hide();
                 });
 
                 $('#newEventStartDate')[0].value = moment(start).format();
                 $('#newEventEndDate')[0].value = moment(end).format();
+                $('#newEventStartTime').val('');
+                $('#newEventEndTime').val('');
                 $('#newEventColor')[0].value = "#3eb7c9";
                 $('#newEventTextColor')[0].value = "#ffffff";
+
+                $modal.show();
             },
 
             eventDrop: function (event, delta, revertFunc) {
@@ -115,9 +136,12 @@ function navigationClickHandler(parent) {
                 $('#newEventTitle')[0].value = event.title;
                 $('#newEventStartDate')[0].value = moment(event.start).format('YYYY-MM-DD');
                 $('#newEventEndDate')[0].value = moment(event.end).format('YYYY-MM-DD');
+                $('#newEventStartTime')[0].value = moment(event.start).format('HH:mm');
+                $('#newEventEndTime')[0].value = moment(event.end).format('HH:mm');
                 $('#newEventColor')[0].value = event.color;
                 $('#newEventTextColor')[0].value = event.textColor;
                 clickedEvent = event;
+
                 $modal.show();
             }
         });
@@ -132,6 +156,9 @@ function navigationClickHandler(parent) {
             defaultView: 'listWeek',
             events: events_array
         });
+
+        $('.fc-right').css('margin-left', '53%').css('width', '10%');
+        $('.fc-center').css('margin-left', '-30%');
 
         var eventsOverview = $('<div/>');
         var nextEvents = $('<h4/>').text('Coming Events').addClass('comingEvents');
