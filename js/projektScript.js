@@ -161,9 +161,10 @@ function navigationClickHandler(parent) {
         $('.fc-center').css('margin-left', '-30%');
 
         var eventsOverview = $('<div/>');
-        var nextEvents = $('<h4/>').text('Coming Events').addClass('comingEvents');
+        var currentEvents = $('<div/>').append($('<h4/>').text('Current Events')).addClass('currentEvents');
+        var comingEvents = $('<div/>').append($('<h4/>').text('Coming Events')).addClass('comingEvents');
 
-        eventsOverview.append($('<br>')).append(nextEvents);
+        mainContentEl.append(eventsOverview);
 
         var dateToday = new Date();
         var diffInTime;
@@ -173,27 +174,28 @@ function navigationClickHandler(parent) {
 
         events_array.forEach(
             function(element , index) {
-                var eventDate = new Date(element.start);
+                var eventStartDate = new Date(element.start);
+                var eventEndDate = new Date(element.end);
 
-                diffInTime = eventDate.getTime() - dateToday.getTime();
+                diffInTime = eventStartDate.getTime() - dateToday.getTime();
                 diffInDays = diffInTime / (1000 * 3600 * 24);
+
+                var name = element.title;
+                var start = element.start;
+
+                var nameEl = $('<div/>').text(name).addClass('eventName');
+                var startLabel = $('<div/>').text(moment(start).format('YYYY-MM-DD'));
+
+                var eventLine = $('<p/>').append(nameEl).append(startLabel);
                 if (diffInDays > 0 && diffInDays < 60 && counter < 8) {
-                    var name = element.title;
-                    var start = element.start;
-
-                    var nameEl = $('<div/>').text(name).addClass('eventName');
-                    var startLabel = $('<div/>').text(moment(start).format('YYYY-MM-DD'));
-
-                    var eventLine = $('<p/>').append(nameEl).append(startLabel);
-
-                    eventsOverview.append(eventLine);
-
+                    comingEvents.append(eventLine);
                     counter++;
+                } else if (eventStartDate.getTime() < dateToday.getTime() && dateToday.getTime() < eventEndDate.getTime() ) {
+                    currentEvents.append(eventLine);
                 }
             }
         );
-
-        mainContentEl.append(eventsOverview);
+        eventsOverview.append($('<br>')).append(currentEvents).append($('<br>')).append(comingEvents);
     } else if (parent.currentTarget.title === "Polls") {
         var newPollIcon = $('<i/>').addClass('fas fa-plus').attr('id', 'newPollIcon');
         var newPollText = $('<span/>').text('Create Poll').attr('id', 'newPollText');

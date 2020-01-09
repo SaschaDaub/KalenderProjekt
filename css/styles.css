@@ -314,6 +314,11 @@ html, body {
 	margin-bottom: 2rem;
 }
 
+.currentEvents {
+	margin-left: 2%;
+	margin-bottom: 2rem;
+}
+
 .eventName {
 	margin-left: 4%;
 	margin-right: 2%;
