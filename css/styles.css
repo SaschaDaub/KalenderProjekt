@@ -311,13 +311,27 @@ html, body {
 
 .comingEvents {
 	margin-left: 2%;
-	margin-bottom: 2rem;
-	height: 17em;
+	height: 40%;
+}
+
+#comingEventsList {
+	display: flex;
+	flex-flow: column wrap;
+	max-height: 100%;
+	height: auto;
 }
 
 .currentEvents {
 	margin-left: 2%;
+	height: 40%;
+}
+
+#currentEventsList {
+	height: auto;
+	max-height: 100%;
 	margin-bottom: 2rem;
+	display: flex;
+	flex-flow: column wrap;
 }
 
 .eventName {
@@ -359,13 +373,26 @@ ul {
 	list-style: none;
 }
 
-.comingEvents li {
+.comingEventsList li {
 	text-align: end;
 	width: 10%;
 	margin-bottom: 1%;
 }
 
+.eventsOverviewWrapper h4 {
+	margin-bottom: 1em;
+	width: 100%;
+}
+
 .fc-button-group button:hover{
 	color: white;
+}
+
+#calendarPar {
+	height: 45%;
+}
+
+#eventsOverviewWrapper {
+	height: 50%;
 }
 

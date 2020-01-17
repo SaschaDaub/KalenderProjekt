@@ -147,12 +147,13 @@ function navigationClickHandler(parent) {
         });
     } else if (parent.currentTarget.title === "Appointments") {
         var calendarEl = $('<div/>').attr('id', 'calendar');
+        var calendarPar = $('<div/>').attr('id', 'calendarPar').append(calendarEl);
         var mainContentEl = $('#mainContent');
 
-        mainContentEl.append(calendarEl);
+        mainContentEl.append(calendarPar);
         $('#calendar').fullCalendar({
             plugins: ['list'],
-            height: 450,
+            height: 'parent',
             defaultView: 'listWeek',
             events: events_array
         });
@@ -160,9 +161,12 @@ function navigationClickHandler(parent) {
         $('.fc-right').css('margin-left', '53%').css('width', '10%');
         $('.fc-center').css('margin-left', '-30%');
 
-        var eventsOverview = $('<div/>');
-        var currentEvents = $('<ul/>').append($('<h4/>').text('Current Events')).addClass('currentEvents');
-        var comingEvents = $('<ul/>').append($('<h4/>').text('Coming Events')).addClass('comingEvents');
+
+        var eventsOverview = $('<div/>').attr('id', 'eventsOverviewWrapper');
+        var currentEventsList = $('<ul/>').attr('id', 'currentEventsList');
+        var comingEventsList = $('<ul/>').attr('id', 'comingEventsList');
+        var currentEvents = $('<div/>').append($('<h4/>').text('Current Events')).append(currentEventsList).addClass('currentEvents');
+        var comingEvents = $('<div/>').append($('<h4/>').text('Coming Events')).append(comingEventsList).addClass('comingEvents');
 
         mainContentEl.append(eventsOverview);
 
@@ -187,11 +191,11 @@ function navigationClickHandler(parent) {
                 var startLabel = $('<div/>').text(moment(start).format('YYYY-MM-DD'));
 
                 var eventLine = $('<li/>').append(nameEl).append(startLabel);
-                if (diffInDays > 0 && diffInDays < 60 && counter < 6) {
-                    comingEvents.append(eventLine);
+                if (diffInDays > 0 && diffInDays < 60) {
+                    comingEventsList.append(eventLine);
                     counter++;
                 } else if (eventStartDate.getTime() < dateToday.getTime() && dateToday.getTime() < eventEndDate.getTime() ) {
-                    currentEvents.append(eventLine);
+                    currentEventsList.append(eventLine);
                 }
             }
         );

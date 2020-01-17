@@ -81,6 +81,24 @@
       "allDay": false,
       "color": "#fcba03",
       "textColor": "#ffffff"
+    },
+    {
+      "id": 10,
+      "title": "Testevent",
+      "start": "2020-01-22",
+      "end": "2020-01-23",
+      "allDay": false,
+      "color": "#fcba03",
+      "textColor": "#ffffff"
+    },
+    {
+      "id": 11,
+      "title": "Testevent",
+      "start": "2020-01-22",
+      "end": "2020-01-23",
+      "allDay": false,
+      "color": "#fcba03",
+      "textColor": "#ffffff"
     }
   ]
 }
