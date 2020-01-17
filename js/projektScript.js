@@ -161,8 +161,8 @@ function navigationClickHandler(parent) {
         $('.fc-center').css('margin-left', '-30%');
 
         var eventsOverview = $('<div/>');
-        var currentEvents = $('<div/>').append($('<h4/>').text('Current Events')).addClass('currentEvents');
-        var comingEvents = $('<div/>').append($('<h4/>').text('Coming Events')).addClass('comingEvents');
+        var currentEvents = $('<ul/>').append($('<h4/>').text('Current Events')).addClass('currentEvents');
+        var comingEvents = $('<ul/>').append($('<h4/>').text('Coming Events')).addClass('comingEvents');
 
         mainContentEl.append(eventsOverview);
 
@@ -186,8 +186,8 @@ function navigationClickHandler(parent) {
                 var nameEl = $('<div/>').text(name).addClass('eventName');
                 var startLabel = $('<div/>').text(moment(start).format('YYYY-MM-DD'));
 
-                var eventLine = $('<p/>').append(nameEl).append(startLabel);
-                if (diffInDays > 0 && diffInDays < 60 && counter < 8) {
+                var eventLine = $('<li/>').append(nameEl).append(startLabel);
+                if (diffInDays > 0 && diffInDays < 60 && counter < 6) {
                     comingEvents.append(eventLine);
                     counter++;
                 } else if (eventStartDate.getTime() < dateToday.getTime() && dateToday.getTime() < eventEndDate.getTime() ) {
@@ -241,7 +241,7 @@ function addNewEvent(newEvent, $modal) {
         textColor: newEvent.textColor
     });
 
-    $('#calendar').fullCalendar('renderEvent', newEvent);
+    $('#calendar').fullCalendar('renderEvent', newEvent, true);
     $modal.hide();
 }
 

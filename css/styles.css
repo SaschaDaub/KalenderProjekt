@@ -312,6 +312,7 @@ html, body {
 .comingEvents {
 	margin-left: 2%;
 	margin-bottom: 2rem;
+	height: 17em;
 }
 
 .currentEvents {
@@ -332,7 +333,10 @@ html, body {
 	width: 10%;
 	margin-left: 1%;
 	height: 5%;
+	height: auto !important;
+	min-height: 5%;
 	opacity: 1;
+	font-size: 100%;
 }
 
 #newPollDiv:hover {
@@ -341,13 +345,27 @@ html, body {
 }
 
 #newPollIcon {
-	margin-left: 10%;
-	margin-top: 0.8125em;
+	margin-left: 8%;
+	margin-top: 7%;
 	color: white;
 }
 
 #newPollText {
 	color: white;
 	margin-left: 5%;
+}
+
+ul {
+	list-style: none;
+}
+
+.comingEvents li {
+	text-align: end;
+	width: 10%;
+	margin-bottom: 1%;
+}
+
+.fc-button-group button:hover{
+	color: white;
 }
 

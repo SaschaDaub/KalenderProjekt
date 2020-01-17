@@ -3,12 +3,13 @@
     {
       "id": 1,
       "title": "Testevent",
-      "start": "2020-01-09",
-      "end": "2020-01-10",
+      "start": "2020-01-22",
+      "end": "2020-01-23",
       "allDay": false,
-      "color": "#0000ff",
+      "color": "#fcba03",
       "textColor": "#ffffff"
     },
+
     {
       "id": 2,
       "title": "Weihnachten",
@@ -24,7 +25,61 @@
       "start": "2020-07-05",
       "end": "2020-07-05",
       "allDay": false,
-      "color": "#0000ff",
+      "color": "#fcba03",
+      "textColor": "#ffffff"
+    },
+    {
+      "id": 4,
+      "title": "Testevent",
+      "start": "2020-01-22",
+      "end": "2020-01-23",
+      "allDay": false,
+      "color": "#fcba03",
+      "textColor": "#ffffff"
+    },
+    {
+      "id": 5,
+      "title": "Testevent",
+      "start": "2020-01-22",
+      "end": "2020-01-23",
+      "allDay": false,
+      "color": "#fcba03",
+      "textColor": "#ffffff"
+    },
+    {
+      "id": 6,
+      "title": "Testevent",
+      "start": "2020-01-22",
+      "end": "2020-01-23",
+      "allDay": false,
+      "color": "#fcba03",
+      "textColor": "#ffffff"
+    },
+    {
+      "id": 7,
+      "title": "Testevent",
+      "start": "2020-01-22",
+      "end": "2020-01-23",
+      "allDay": false,
+      "color": "#fcba03",
+      "textColor": "#ffffff"
+    },
+    {
+      "id": 8,
+      "title": "Testevent",
+      "start": "2020-01-22",
+      "end": "2020-01-23",
+      "allDay": false,
+      "color": "#fcba03",
+      "textColor": "#ffffff"
+    },
+    {
+      "id": 9,
+      "title": "Testevent",
+      "start": "2020-01-22",
+      "end": "2020-01-23",
+      "allDay": false,
+      "color": "#fcba03",
       "textColor": "#ffffff"
     }
   ]
