@@ -199,7 +199,7 @@ function navigationClickHandler(parent) {
                 }
             }
         );
-        eventsOverview.append($('<br>')).append(currentEvents).append($('<br>')).append(comingEvents);
+        eventsOverview.append(currentEvents).append(comingEvents);
     } else if (parent.currentTarget.title === "Polls") {
         var newPollIcon = $('<i/>').addClass('fas fa-plus').attr('id', 'newPollIcon');
         var newPollText = $('<span/>').text('Create Poll').attr('id', 'newPollText');
