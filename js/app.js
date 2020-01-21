@@ -2,6 +2,7 @@ const http = require("http");
 const https = require("https");
 const express = require("express");
 const path = require("path");
+const sql = require('mssql');
 
 var app = express();
 
@@ -128,6 +129,40 @@ app.get("/webfonts/fa-solid-900.ttf", (req, res) => {
 app.get("/json/events.json", (req, res) => {
 	res.sendFile("events.json", { root: path.join("./json")});
 });
+
+var dbconfig = {
+	server: "kalenderprojekt.database.windows.net",
+	user: "Kalenderuser",
+	password: "Kalender2020#",
+	database: "Kalenderprojekt",
+	port: 1433,
+	options: {
+		encrypt: true
+	}
+};
+
+var conn = new sql.ConnectionPool(dbconfig);
+
+function getList() {
+	conn.connect(function (err) {
+		if (err) {
+			throw err;
+		} else {
+			var req = new sql.Request(conn);
+			req.query("SELECT id FROM dbo.profile", function (err, recordset) {
+				if (err) {
+					throw err;
+				} else {
+					console.log(recordset);
+				}
+				conn.close();
+			});
+		}
+	});
+}
+
+getList();
+
 
 
 const server = http.createServer(app);
