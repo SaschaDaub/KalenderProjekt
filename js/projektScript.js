@@ -1,11 +1,37 @@
-
 var events_array = [];
 var clickedEvent;
+var isLoggedIn = {};
 
 $(document).ready(function () {
     var $confirmButton = $('#btn-confirm');
     var $modal = $('.modal');
     var newEvent = {};
+
+    loggedIn = localStorage.getItem('isLoggedIn');
+    var isLoggedIn = JSON.parse(loggedIn);
+
+    if(!isLoggedIn) {
+        isLoggedIn = {
+            'value': false
+        };
+    }
+
+    if (isLoggedIn.value == false) {
+        $('#accountLogo').hide();
+        $('#naviButtons').hide();
+        $('#logOutIconDiv').hide();
+
+        $('#loginButton').click(function () {
+            var uname = $('#uname')[0].value;
+            var psw = $('#psw')[0].value;
+            if (uname && psw) {
+                logIn(uname, psw);
+                $('#loginButton').hide();
+            }
+        });
+    } else {
+        $('.animate').hide();
+    }
 
     addLocalSavedEvents();
 
@@ -22,8 +48,8 @@ $(document).ready(function () {
         var endTime = $('#newEventEndTime')[0].value;
 
 
-        if ( title && start && end ) {
-            if ( (startTime && endTime) || (!startTime && !endTime) ) {
+        if (title && start && end) {
+            if ((startTime && endTime) || (!startTime && !endTime)) {
                 if (usage === "add") {
                     addNewEvent(newEvent, $modal);
                 } else if (usage === "edit") {
@@ -97,7 +123,7 @@ function navigationClickHandler(parent) {
                 $('#newEventEndDate')[0].value = moment(end).format();
                 $('#newEventStartTime').val('');
                 $('#newEventEndTime').val('');
-                $('#newEventColor')[0].value = "#3eb7c9";
+                $('#newEventColor')[0].value = "#0096ff";
                 $('#newEventTextColor')[0].value = "#ffffff";
 
                 $modal.show();
@@ -177,7 +203,7 @@ function navigationClickHandler(parent) {
         var counter = 0;
 
         events_array.forEach(
-            function(element , index) {
+            function (element, index) {
                 var eventStartDate = new Date(element.start);
                 var eventEndDate = new Date(element.end);
 
@@ -194,7 +220,7 @@ function navigationClickHandler(parent) {
                 if (diffInDays > 0 && diffInDays < 60) {
                     comingEventsList.append(eventLine);
                     counter++;
-                } else if (eventStartDate.getTime() < dateToday.getTime() && dateToday.getTime() < eventEndDate.getTime() ) {
+                } else if (eventStartDate.getTime() < dateToday.getTime() && dateToday.getTime() < eventEndDate.getTime()) {
                     currentEventsList.append(eventLine);
                 }
             }
@@ -268,17 +294,42 @@ function editEvent(newEvent, $modal) {
     $modal.hide();
 }
 
-function addLocalSavedEvents () {
+function addLocalSavedEvents() {
     $.ajax({
-       type: "GET",
-       url: "./json/events.json",
-       dataType: "json",
-       success: function (data) {
-           var localSavedEventsList = data.events;
+        type: "GET",
+        url: "./json/events.json",
+        dataType: "json",
+        success: function (data) {
+            var localSavedEventsList = data.events;
 
-           $.each(localSavedEventsList, function (index, element) {
-               events_array.push(element);
-           });
-       }
+            $.each(localSavedEventsList, function (index, element) {
+                events_array.push(element);
+            });
+        }
+    });
+}
+
+function logIn(uname, psw) {
+    $.ajax({
+       url: '/log_in',
+       data: {
+           userName: uname,
+           password: psw
+       },
+        dataType: "text",
+        method: 'post',
+        success: function (response) {
+           if (response == "true") {
+               $('.animate').hide();
+               $('#accountLogo').show();
+               $('#naviButtons').show();
+               $('#logOutIconDiv').show();
+               localStorage.setItem('isLoggedIn' ,JSON.stringify({'value' : true}));
+           }
+        },
+        error: function (error) {
+           $('#loginButton').show();
+           console.log(error.errorText);
+        }
     });
 }

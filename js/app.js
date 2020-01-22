@@ -3,8 +3,12 @@ const https = require("https");
 const express = require("express");
 const path = require("path");
 const sql = require('mssql');
+const bodyparser = require("body-parser");
 
 var app = express();
+
+app.use(bodyparser.urlencoded({extended: false}));
+app.use(bodyparser.json());
 
 app.get("/", (req, res) => {
 	console.log(res.statusCode);
@@ -130,6 +134,22 @@ app.get("/json/events.json", (req, res) => {
 	res.sendFile("events.json", { root: path.join("./json")});
 });
 
+app.post("/log_in", (request, response) => {
+	var userInputUname = request.body.userName;
+	var userInputPsw = request.body.password;
+	var callbackFunction = function(resList) {
+		var isRegistered = false;
+		resList.forEach(function(element, index) {
+			if (element.username == userInputUname && element.password == userInputPsw) {
+				isRegistered = true;
+				response.send(isRegistered);
+			}
+		});
+	};
+
+	accessDatabase("SELECT id, username, password FROM dbo.kp_profile", callbackFunction);
+});
+
 var dbconfig = {
 	server: "kalenderprojekt.database.windows.net",
 	user: "Kalenderuser",
@@ -143,25 +163,25 @@ var dbconfig = {
 
 var conn = new sql.ConnectionPool(dbconfig);
 
-function getList() {
+function accessDatabase(sqlStatement, callbackFunction) {
 	conn.connect(function (err) {
 		if (err) {
 			throw err;
 		} else {
 			var req = new sql.Request(conn);
-			req.query("SELECT id FROM dbo.profile", function (err, recordset) {
+			req.query(sqlStatement, function (err, resultset) {
 				if (err) {
 					throw err;
 				} else {
-					console.log(recordset);
+					conn.close();
+					callbackFunction(resultset.recordset);
 				}
 				conn.close();
 			});
+
 		}
 	});
 }
-
-getList();
 
 
 
