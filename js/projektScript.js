@@ -7,28 +7,22 @@ $(document).ready(function () {
     var $modal = $('.modal');
     var newEvent = {};
 
-    loggedIn = localStorage.getItem('isLoggedIn');
-    var isLoggedIn = JSON.parse(loggedIn);
+    $('#logOutIconDiv').click(function () {
+        isLoggedIn.value = false;
+        logOut();
+    });
 
-    if(!isLoggedIn) {
+    var loggedIn = localStorage.getItem('isLoggedIn');
+    isLoggedIn = JSON.parse(loggedIn);
+
+    if (!isLoggedIn) {
         isLoggedIn = {
             'value': false
         };
     }
 
     if (isLoggedIn.value == false) {
-        $('#accountLogo').hide();
-        $('#naviButtons').hide();
-        $('#logOutIconDiv').hide();
-
-        $('#loginButton').click(function () {
-            var uname = $('#uname')[0].value;
-            var psw = $('#psw')[0].value;
-            if (uname && psw) {
-                logIn(uname, psw);
-                $('#loginButton').hide();
-            }
-        });
+        logOut();
     } else {
         $('.animate').hide();
     }
@@ -258,6 +252,7 @@ function getNewEventValues(newEvent) {
     return newEvent;
 }
 
+//Is called when you add a new Event to the Calendar
 function addNewEvent(newEvent, $modal) {
     newEvent = getNewEventValues(newEvent);
 
@@ -275,6 +270,7 @@ function addNewEvent(newEvent, $modal) {
     $modal.hide();
 }
 
+//Is called when you edit an existing event on the Calendar page
 function editEvent(newEvent, $modal) {
     newEvent = getNewEventValues(newEvent);
 
@@ -309,27 +305,52 @@ function addLocalSavedEvents() {
     });
 }
 
+//logs the user in
 function logIn(uname, psw) {
     $.ajax({
-       url: '/log_in',
-       data: {
-           userName: uname,
-           password: psw
-       },
+        url: '/log_in',
+        data: {
+            userName: uname,
+            password: psw
+        },
         dataType: "text",
         method: 'post',
         success: function (response) {
-           if (response == "true") {
-               $('.animate').hide();
-               $('#accountLogo').show();
-               $('#naviButtons').show();
-               $('#logOutIconDiv').show();
-               localStorage.setItem('isLoggedIn' ,JSON.stringify({'value' : true}));
-           }
+            if (response == "true") {
+                $('.animate').addClass('hidden').hide();
+                $('#accountLogo').show();
+                $('#naviButtons').show();
+                $('#logOutIconDiv').show();
+                $('#mainContent').show();
+                localStorage.setItem('isLoggedIn', JSON.stringify({'value': true}));
+            } else {
+                $('#loginButton').show();
+                window.alert('Wrong Username or Password.');
+            }
         },
         error: function (error) {
-           $('#loginButton').show();
-           console.log(error.errorText);
+            console.log(error.errorText);
+        }
+    });
+}
+
+//logs the User out
+function logOut() {
+    $('#accountLogo').hide();
+    $('#naviButtons').hide();
+    $('#logOutIconDiv').hide();
+    $('#mainContent').hide();
+    $('.animate').removeClass('hidden').show();
+    $('#loginButton').show();
+
+    localStorage.setItem('isLoggedIn', JSON.stringify({'value': false}));
+
+    $('#loginButton').click(function () {
+        var uname = $('#uname')[0].value;
+        var psw = $('#psw')[0].value;
+        if (uname && psw) {
+            logIn(uname, psw);
+            $('#loginButton').hide();
         }
     });
 }

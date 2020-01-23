@@ -137,17 +137,17 @@ app.get("/json/events.json", (req, res) => {
 app.post("/log_in", (request, response) => {
 	var userInputUname = request.body.userName;
 	var userInputPsw = request.body.password;
-	var callbackFunction = function(resList) {
-		var isRegistered = false;
-		resList.forEach(function(element, index) {
-			if (element.username == userInputUname && element.password == userInputPsw) {
-				isRegistered = true;
-				response.send(isRegistered);
-			}
-		});
-	};
 
-	accessDatabase("SELECT id, username, password FROM dbo.kp_profile", callbackFunction);
+	accessDatabase("SELECT id, username, password FROM dbo.kp_profile WHERE username='" + userInputUname + "' AND password='" + userInputPsw + "'")
+		.then( function(res) {
+			var isRegistered = false;
+
+			if (res.recordset.length > 0) {
+				isRegistered = true;
+			}
+
+			response.send(isRegistered);
+		})
 });
 
 var dbconfig = {
@@ -156,31 +156,29 @@ var dbconfig = {
 	password: "Kalender2020#",
 	database: "Kalenderprojekt",
 	port: 1433,
+	pool: {
+		max: 10,
+		min: 0,
+		idleTimeoutMillis: 30000
+	},
 	options: {
-		encrypt: true
+		encrypt: true,
+		enableArithAbort: true
 	}
 };
 
-var conn = new sql.ConnectionPool(dbconfig);
+const pool = new sql.ConnectionPool(dbconfig);
+const poolConnect = pool.connect();
 
-function accessDatabase(sqlStatement, callbackFunction) {
-	conn.connect(function (err) {
-		if (err) {
-			throw err;
-		} else {
-			var req = new sql.Request(conn);
-			req.query(sqlStatement, function (err, resultset) {
-				if (err) {
-					throw err;
-				} else {
-					conn.close();
-					callbackFunction(resultset.recordset);
-				}
-				conn.close();
-			});
-
-		}
-	});
+async function accessDatabase(sqlStatement) {
+	await poolConnect; //ensures that the pool has been created
+	try {
+		const request = pool.request();
+		const result = request.query(sqlStatement);
+		return result;
+	} catch (err) {
+		console.error('SQL error', err);
+	}
 }
 
 
@@ -189,5 +187,5 @@ const server = http.createServer(app);
 
 
 server.listen(3000, () => {
-	console.log("Server is listening on port 3000. \n\r mmmh lecker lecker");
+	console.log("Server is listening on port 3000");
 });

@@ -98,6 +98,11 @@ html, body {
 	transform: scale(-1);
 }
 
+#logOutIconDiv:hover {
+	color: white;
+	cursor: pointer;
+}
+
 #logOutIcon label {
     font-family: Open Sans;
     font-size:100%;
@@ -454,5 +459,9 @@ span.psw {
 	.cancelbtn {
 		width: 100%;
 	}
+}
+
+.hidden {
+	display: none !important;
 }
 
