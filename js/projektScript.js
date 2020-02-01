@@ -1,11 +1,31 @@
-
 var events_array = [];
 var clickedEvent;
+var isLoggedIn = {};
 
 $(document).ready(function () {
     var $confirmButton = $('#btn-confirm');
     var $modal = $('.modal');
     var newEvent = {};
+
+    $('#logOutIconDiv').click(function () {
+        isLoggedIn.value = false;
+        logOut();
+    });
+
+    var loggedIn = localStorage.getItem('isLoggedIn');
+    isLoggedIn = JSON.parse(loggedIn);
+
+    if (!isLoggedIn) {
+        isLoggedIn = {
+            'value': false
+        };
+    }
+
+    if (isLoggedIn.value == false) {
+        logOut();
+    } else {
+        $('.animate').hide();
+    }
 
     addLocalSavedEvents();
 
@@ -22,8 +42,8 @@ $(document).ready(function () {
         var endTime = $('#newEventEndTime')[0].value;
 
 
-        if ( title && start && end ) {
-            if ( (startTime && endTime) || (!startTime && !endTime) ) {
+        if (title && start && end) {
+            if ((startTime && endTime) || (!startTime && !endTime)) {
                 if (usage === "add") {
                     addNewEvent(newEvent, $modal);
                 } else if (usage === "edit") {
@@ -97,7 +117,7 @@ function navigationClickHandler(parent) {
                 $('#newEventEndDate')[0].value = moment(end).format();
                 $('#newEventStartTime').val('');
                 $('#newEventEndTime').val('');
-                $('#newEventColor')[0].value = "#3eb7c9";
+                $('#newEventColor')[0].value = "#0096ff";
                 $('#newEventTextColor')[0].value = "#ffffff";
 
                 $modal.show();
@@ -177,7 +197,7 @@ function navigationClickHandler(parent) {
         var counter = 0;
 
         events_array.forEach(
-            function(element , index) {
+            function (element, index) {
                 var eventStartDate = new Date(element.start);
                 var eventEndDate = new Date(element.end);
 
@@ -194,7 +214,7 @@ function navigationClickHandler(parent) {
                 if (diffInDays > 0 && diffInDays < 60) {
                     comingEventsList.append(eventLine);
                     counter++;
-                } else if (eventStartDate.getTime() < dateToday.getTime() && dateToday.getTime() < eventEndDate.getTime() ) {
+                } else if (eventStartDate.getTime() < dateToday.getTime() && dateToday.getTime() < eventEndDate.getTime()) {
                     currentEventsList.append(eventLine);
                 }
             }
@@ -232,6 +252,7 @@ function getNewEventValues(newEvent) {
     return newEvent;
 }
 
+//Is called when you add a new Event to the Calendar
 function addNewEvent(newEvent, $modal) {
     newEvent = getNewEventValues(newEvent);
 
@@ -249,6 +270,7 @@ function addNewEvent(newEvent, $modal) {
     $modal.hide();
 }
 
+//Is called when you edit an existing event on the Calendar page
 function editEvent(newEvent, $modal) {
     newEvent = getNewEventValues(newEvent);
 
@@ -268,17 +290,67 @@ function editEvent(newEvent, $modal) {
     $modal.hide();
 }
 
-function addLocalSavedEvents () {
+function addLocalSavedEvents() {
     $.ajax({
-       type: "GET",
-       url: "./json/events.json",
-       dataType: "json",
-       success: function (data) {
-           var localSavedEventsList = data.events;
+        type: "GET",
+        url: "./json/events.json",
+        dataType: "json",
+        success: function (data) {
+            var localSavedEventsList = data.events;
 
-           $.each(localSavedEventsList, function (index, element) {
-               events_array.push(element);
-           });
-       }
+            $.each(localSavedEventsList, function (index, element) {
+                events_array.push(element);
+            });
+        }
+    });
+}
+
+//logs the user in
+function logIn(uname, psw) {
+    $.ajax({
+        url: '/log_in',
+        data: {
+            userName: uname,
+            password: psw
+        },
+        dataType: "text",
+        method: 'post',
+        success: function (response) {
+            if (response == "true") {
+                $('.animate').addClass('hidden').hide();
+                $('#accountLogo').show();
+                $('#naviButtons').show();
+                $('#logOutIconDiv').show();
+                $('#mainContent').show();
+                localStorage.setItem('isLoggedIn', JSON.stringify({'value': true}));
+            } else {
+                $('#loginButton').show();
+                window.alert('Wrong Username or Password.');
+            }
+        },
+        error: function (error) {
+            console.log(error.errorText);
+        }
+    });
+}
+
+//logs the User out
+function logOut() {
+    $('#accountLogo').hide();
+    $('#naviButtons').hide();
+    $('#logOutIconDiv').hide();
+    $('#mainContent').hide();
+    $('.animate').removeClass('hidden').show();
+    $('#loginButton').show();
+
+    localStorage.setItem('isLoggedIn', JSON.stringify({'value': false}));
+
+    $('#loginButton').click(function () {
+        var uname = $('#uname')[0].value;
+        var psw = $('#psw')[0].value;
+        if (uname && psw) {
+            logIn(uname, psw);
+            $('#loginButton').hide();
+        }
     });
 }

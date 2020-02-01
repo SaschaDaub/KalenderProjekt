@@ -2,8 +2,13 @@ const http = require("http");
 const https = require("https");
 const express = require("express");
 const path = require("path");
+const sql = require('mssql');
+const bodyparser = require("body-parser");
 
 var app = express();
+
+app.use(bodyparser.urlencoded({extended: false}));
+app.use(bodyparser.json());
 
 app.get("/", (req, res) => {
 	console.log(res.statusCode);
@@ -129,10 +134,58 @@ app.get("/json/events.json", (req, res) => {
 	res.sendFile("events.json", { root: path.join("./json")});
 });
 
+app.post("/log_in", (request, response) => {
+	var userInputUname = request.body.userName;
+	var userInputPsw = request.body.password;
+
+	accessDatabase("SELECT id, username, password FROM dbo.kp_profile WHERE username='" + userInputUname + "' AND password='" + userInputPsw + "'")
+		.then( function(res) {
+			var isRegistered = false;
+
+			if (res.recordset.length > 0) {
+				isRegistered = true;
+			}
+
+			response.send(isRegistered);
+		})
+});
+
+var dbconfig = {
+	server: "kalenderprojekt.database.windows.net",
+	user: "Kalenderuser",
+	password: "Kalender2020#",
+	database: "Kalenderprojekt",
+	port: 1433,
+	pool: {
+		max: 10,
+		min: 0,
+		idleTimeoutMillis: 30000
+	},
+	options: {
+		encrypt: true,
+		enableArithAbort: true
+	}
+};
+
+const pool = new sql.ConnectionPool(dbconfig);
+const poolConnect = pool.connect();
+
+async function accessDatabase(sqlStatement) {
+	await poolConnect; //ensures that the pool has been created
+	try {
+		const request = pool.request();
+		const result = request.query(sqlStatement);
+		return result;
+	} catch (err) {
+		console.error('SQL error', err);
+	}
+}
+
+
 
 const server = http.createServer(app);
 
 
 server.listen(3000, () => {
-	console.log("Server is listening on port 3000. \n\r mmmh lecker lecker");
+	console.log("Server is listening on port 3000");
 });
