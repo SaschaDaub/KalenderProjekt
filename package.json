@@ -4,7 +4,7 @@
   "description": "package.json for project Calendar",
   "main": "./js/app.js",
   "engines": {
-    "node": "12.9.0"
+    "node": "9.4.0"
   },
   "dependencies": {
     "@fullcalendar/core": "^4.3.1",
