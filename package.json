@@ -4,7 +4,11 @@
   "description": "package.json for project Calendar",
   "main": "./js/app.js",
   "engines": {
-    "node": "9.4.0"
+    "node": "12.9.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SaschaDaub/KalenderProjekt"
   },
   "dependencies": {
     "@fullcalendar/core": "^4.3.1",
